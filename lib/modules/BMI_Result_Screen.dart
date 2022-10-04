@@ -1,4 +1,3 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_const_constructors, camel_case_types, file_names, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -8,11 +7,11 @@ class BMI_Result_Screen extends StatelessWidget {
   final bool isMale;
   final int Age;
 
-  BMI_Result_Screen({
+  const BMI_Result_Screen({Key? key,
     required this.Result,
     required this.Age,
     required this.isMale,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class BMI_Result_Screen extends StatelessWidget {
       backgroundColor: HexColor('#04043A'),
       appBar: AppBar(
         backgroundColor: HexColor('#800080'),
-        title: Text(
+        title: const Text(
           'BMI Result',
           style: TextStyle(
             fontSize: 25.0,
@@ -49,16 +48,16 @@ class BMI_Result_Screen extends StatelessWidget {
                   children: [
                     Text(
                       'Result : $Result ',
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 40.0,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 1.0,
                     ),
-                    Text(
+                    const Text(
                       'BMI ',
                       style: TextStyle(
                         color: Colors.white,
@@ -83,18 +82,18 @@ class BMI_Result_Screen extends StatelessWidget {
                     width: double.infinity,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5.0,
                 ),
                 Text(
                   'Gender : ${isMale ? 'Male' : 'Female'} ',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 30.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5.0,
                 ),
                 Padding(
@@ -114,7 +113,7 @@ class BMI_Result_Screen extends StatelessWidget {
                 ),
                 Text(
                   'Age : $Age ',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 30.0,
                     fontWeight: FontWeight.bold,

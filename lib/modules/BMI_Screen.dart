@@ -38,7 +38,7 @@ class _BMI_ScreenState extends State<BMI_Screen> {
             // Part 1
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
                     Expanded(
@@ -135,7 +135,7 @@ class _BMI_ScreenState extends State<BMI_Screen> {
             Expanded(
                 child: Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: 20.0,
+                horizontal: 8.0,
               ),
               child: Container(
                 decoration: BoxDecoration(
@@ -200,7 +200,7 @@ class _BMI_ScreenState extends State<BMI_Screen> {
             // Part 3
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
                     Expanded(
@@ -232,7 +232,7 @@ class _BMI_ScreenState extends State<BMI_Screen> {
                               ),
                             ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 FloatingActionButton(
                                   onPressed: () {
@@ -267,7 +267,7 @@ class _BMI_ScreenState extends State<BMI_Screen> {
                       ),
                     ),
                     SizedBox(
-                      width: 20.0,
+                      width: 10.0,
                     ),
                     Expanded(
                       child: Container(
@@ -297,7 +297,7 @@ class _BMI_ScreenState extends State<BMI_Screen> {
                               ),
                             ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 FloatingActionButton(
                                   onPressed: () {
