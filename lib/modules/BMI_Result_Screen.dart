@@ -2,14 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-class BMI_Result_Screen extends StatelessWidget {
-  final int Result;
+class BMIResultScreen extends StatelessWidget {
+  final int result;
   final bool isMale;
-  final int Age;
+  final int age;
 
-  const BMI_Result_Screen({Key? key,
-    required this.Result,
-    required this.Age,
+  const BMIResultScreen({Key? key,
+    required this.result,
+    required this.age,
     required this.isMale,
   }) : super(key: key);
 
@@ -47,7 +47,7 @@ class BMI_Result_Screen extends StatelessWidget {
                   textBaseline: TextBaseline.alphabetic,
                   children: [
                     Text(
-                      'Result : $Result ',
+                      'Result : $result ',
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 40.0,
@@ -112,13 +112,106 @@ class BMI_Result_Screen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Age : $Age ',
+                  'Age : $age ',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 30.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                if (result >= 16 && result <= 18.5)
+                  Column(
+                    children: [
+                      const SizedBox(
+                        height: 5.0,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(
+                          10.0,
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              2.0,
+                            ),
+                            color: Colors.blue,
+                          ),
+                          height: 5.0,
+                          width: double.infinity,
+                        ),
+                      ),
+                      const Text(
+                        'UnderWeight ',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                if (result >= 18.5 && result <= 25.0)
+                  Column(
+                    children: [
+                      const SizedBox(
+                        height: 5.0,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(
+                          10.0,
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              2.0,
+                            ),
+                            color: Colors.blue,
+                          ),
+                          height: 5.0,
+                          width: double.infinity,
+                        ),
+                      ),
+                      const Text(
+                        'Normal ',
+                        style: TextStyle(
+                          color: Colors.green,
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                if (result >= 25.0 && result <= 40)
+                  Column(
+                    children: [
+                      const SizedBox(
+                        height: 5.0,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(
+                          10.0,
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              2.0,
+                            ),
+                            color: Colors.blue,
+                          ),
+                          height: 5.0,
+                          width: double.infinity,
+                        ),
+                      ),
+                      const Text(
+                        'OverWeight ',
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
               ],
             ),
           ),

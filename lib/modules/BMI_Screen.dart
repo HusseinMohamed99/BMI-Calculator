@@ -182,6 +182,8 @@ class _BMI_ScreenState extends State<BMI_Screen> {
                       ],
                     ),
                     Slider(
+                      thumbColor: Colors.black,
+                      activeColor: Colors.blue,
                       inactiveColor: Colors.white,
                       value: HEIGHT,
                       min: 70,
@@ -349,10 +351,10 @@ class _BMI_ScreenState extends State<BMI_Screen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => BMI_Result_Screen(
+                      builder: (context) => BMIResultScreen(
                         isMale: isMale,
-                        Age: AGE,
-                        Result: result.round(),
+                        age: AGE,
+                        result: result.round(),
                       ),
                     ),
                   );
