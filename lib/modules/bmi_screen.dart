@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import 'BMI_Result_Screen.dart';
+import 'bmi_result_screen.dart';
 
 class BMI_Screen extends StatefulWidget {
   @override
