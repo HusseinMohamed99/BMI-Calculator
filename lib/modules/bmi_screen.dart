@@ -1,157 +1,154 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, file_names, non_constant_identifier_names, avoid_print, library_private_types_in_public_api, sort_child_properties_last
-
 import 'dart:math';
+
+import 'package:bmi_calculator/generated/assets.dart';
+import 'package:bmi_calculator/modules/bmi_result_screen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import 'bmi_result_screen.dart';
+class BmiScreen extends StatefulWidget {
+  const BmiScreen({super.key});
 
-class BMI_Screen extends StatefulWidget {
   @override
-  _BMI_ScreenState createState() => _BMI_ScreenState();
+  State<BmiScreen> createState() => _BmiScreenState();
 }
 
-class _BMI_ScreenState extends State<BMI_Screen> {
+class _BmiScreenState extends State<BmiScreen> {
   bool isMale = true;
-  double HEIGHT = 120.0;
-  int AGE = 18;
-  int WEIGHT = 50;
+  double height = 120.0;
+  int age = 18;
+  int weight = 50;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: HexColor('#04043A'),
-        appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: HexColor('#04043A'),
-          title: Text(
-            'BMI Calculator',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 25.0,
-              fontWeight: FontWeight.bold,
-            ),
+      backgroundColor: const Color(0xff04043A),
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: const Color(0xff04043A),
+        title: Text(
+          'BMI Calculator',
+          style: GoogleFonts.roboto(
+            color: Colors.white,
+            fontSize: 25.sp,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        body: Column(
-          children: [
-            // Part 1
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isMale = true;
-                          });
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              10.0,
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0).r,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isMale = true;
+                        });
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10).r,
+                          color: !isMale
+                              ? const Color(0xFF000000)
+                              : const Color(0xff004a86),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              Assets.imagesMale,
+                              width: 90.w,
+                              height: 90.h,
+                              colorFilter: const ColorFilter.mode(
+                                Colors.white,
+                                BlendMode.srcATop,
+                              ),
                             ),
-                            color: isMale
-                                ? HexColor('#ff1493')
-                                : HexColor('#800080'),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Image(
+                            Text(
+                              'MALE',
+                              style: GoogleFonts.roboto(
                                 color: Colors.white,
-                                image: AssetImage(
-                                  'assets/images/male.png',
-                                ),
-                                width: 90.0,
-                                height: 90.0,
+                                fontSize: 30.sp,
+                                fontWeight: FontWeight.bold,
                               ),
-                              Text(
-                                'MALE',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 30.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: 20.0,
-                    ),
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isMale = false;
-                          });
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              10.0,
+                  ),
+                  SizedBox(width: 20.w),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isMale = false;
+                        });
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            10,
+                          ).r,
+                          color: !isMale
+                              ? const Color(0xff004a86)
+                              : const Color(0xFF000000),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              Assets.imagesFemale,
+                              width: 90.w,
+                              height: 90.h,
+                              colorFilter: const ColorFilter.mode(
+                                Colors.white,
+                                BlendMode.srcATop,
+                              ),
                             ),
-                            color: !isMale
-                                ? HexColor('#ff1493')
-                                : HexColor('#800080'),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Image(
+                            Text(
+                              'FEMALE',
+                              style: GoogleFonts.roboto(
                                 color: Colors.white,
-                                image: AssetImage(
-                                  'assets/images/female.png',
-                                ),
-                                width: 90.0,
-                                height: 90.0,
+                                fontSize: 30.sp,
+                                fontWeight: FontWeight.bold,
                               ),
-                              Text(
-                                'FEMALE',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 30.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-
-            // Part 2
-            Expanded(
-                child: Padding(
+          ),
+          Expanded(
+            child: Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: 8.0,
-              ),
+                horizontal: 8,
+              ).r,
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(
-                    10.0,
-                  ),
-                  color: HexColor('#800080'),
+                  borderRadius: BorderRadius.circular(10).r,
+                  color: const Color(0xFF000000),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       'Height',
-                      style: TextStyle(
+                      style: GoogleFonts.roboto(
                         color: Colors.white,
-                        fontSize: 40.0,
+                        fontSize: 40.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -161,215 +158,216 @@ class _BMI_ScreenState extends State<BMI_Screen> {
                       textBaseline: TextBaseline.alphabetic,
                       children: [
                         Text(
-                          '${HEIGHT.round()}',
-                          style: TextStyle(
+                          '${height.round()}',
+                          style: GoogleFonts.roboto(
                             color: Colors.white,
-                            fontSize: 40.0,
+                            fontSize: 40.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(
-                          width: 10.0,
-                        ),
+                        SizedBox(width: 10.w),
                         Text(
                           'CM',
-                          style: TextStyle(
+                          style: GoogleFonts.roboto(
                             color: Colors.white,
-                            fontSize: 20.0,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                     ),
                     Slider(
-                      thumbColor: Colors.black,
+                      thumbColor: Colors.red,
                       activeColor: Colors.blue,
                       inactiveColor: Colors.white,
-                      value: HEIGHT,
+                      value: height,
                       min: 70,
                       max: 250,
                       onChanged: (value) {
                         setState(() {
-                          HEIGHT = value;
+                          height = value;
                         });
                       },
                     ),
                   ],
                 ),
               ),
-            )),
-
-            // Part 3
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            10.0,
-                          ),
-                          color: HexColor('#800080'),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'AGE',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 30.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              '$AGE',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 40.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                FloatingActionButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      AGE--;
-                                    });
-                                  },
-                                  mini: true,
-                                  child: Icon(
-                                    Icons.remove,
-                                    color: Colors.white,
-                                  ),
-                                  backgroundColor: Colors.black,
-                                ),
-                                FloatingActionButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      AGE++;
-                                    });
-                                  },
-                                  mini: true,
-                                  child: Icon(
-                                    Icons.add,
-                                    color: Colors.white,
-                                  ),
-                                  backgroundColor: Colors.black,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10.0,
-                    ),
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            10.0,
-                          ),
-                          color: HexColor('#800080'),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'WEIGHT',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 30.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              '$WEIGHT',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 40.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                FloatingActionButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      WEIGHT--;
-                                    });
-                                  },
-                                  mini: true,
-                                  child: Icon(
-                                    Icons.remove,
-                                    color: Colors.white,
-                                  ),
-                                  backgroundColor: Colors.black,
-                                ),
-                                FloatingActionButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      WEIGHT++;
-                                    });
-                                  },
-                                  mini: true,
-                                  child: Icon(
-                                    Icons.add,
-                                    color: Colors.white,
-                                  ),
-                                  backgroundColor: Colors.black,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ),
-
-            // Part 4 (Button)
-            Container(
-              color: HexColor('#800080'),
-              width: double.infinity,
-              child: MaterialButton(
-                onPressed: () {
-                  double result = WEIGHT / pow(HEIGHT / 100, 2);
-
-                  print(result.round());
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => BMIResultScreen(
-                        isMale: isMale,
-                        age: AGE,
-                        result: result.round(),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0).r,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          10,
+                        ).r,
+                        color: const Color(0xFF000000),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'AGE',
+                            style: GoogleFonts.roboto(
+                              color: Colors.white,
+                              fontSize: 30.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            '$age',
+                            style: GoogleFonts.roboto(
+                              color: Colors.white,
+                              fontSize: 40.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              FloatingActionButton(
+                                onPressed: () {
+                                  setState(() {
+                                    age--;
+                                  });
+                                },
+                                mini: true,
+                                backgroundColor: Colors.blue,
+                                child: Icon(
+                                  Icons.remove,
+                                  color: Colors.white,
+                                  size: 24.sp,
+                                ),
+                              ),
+                              FloatingActionButton(
+                                onPressed: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                },
+                                mini: true,
+                                backgroundColor: Colors.blue,
+                                child: Icon(
+                                  Icons.add,
+                                  color: Colors.white,
+                                  size: 24.sp,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                  );
-                },
-                height: 60.0,
-                child: Text(
-                  'CALCULATOR',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25.0,
                   ),
+                  SizedBox(width: 10.w),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          10,
+                        ).r,
+                        color: const Color(0xFF000000),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'WEIGHT',
+                            style: GoogleFonts.roboto(
+                              color: Colors.white,
+                              fontSize: 30.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            '$weight',
+                            style: GoogleFonts.roboto(
+                              color: Colors.white,
+                              fontSize: 40.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              FloatingActionButton(
+                                onPressed: () {
+                                  setState(() {
+                                    weight--;
+                                  });
+                                },
+                                mini: true,
+                                backgroundColor: Colors.blue,
+                                child: Icon(
+                                  Icons.remove,
+                                  color: Colors.white,
+                                  size: 24.sp,
+                                ),
+                              ),
+                              FloatingActionButton(
+                                onPressed: () {
+                                  setState(() {
+                                    weight++;
+                                  });
+                                },
+                                mini: true,
+                                backgroundColor: Colors.blue,
+                                child: Icon(
+                                  Icons.add,
+                                  color: Colors.white,
+                                  size: 24.sp,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            color: const Color(0xFF000000),
+            width: double.infinity,
+            child: MaterialButton(
+              onPressed: () {
+                double result = weight / pow(height / 100, 2);
+
+                if (kDebugMode) {
+                  print(result.round());
+                }
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BMIResultScreen(
+                      isMale: isMale,
+                      age: age,
+                      result: result.round(),
+                    ),
+                  ),
+                );
+              },
+              height: 60.0,
+              child: Text(
+                'CALCULATOR',
+                style: GoogleFonts.roboto(
+                  color: Colors.white,
+                  fontSize: 25.sp,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }
