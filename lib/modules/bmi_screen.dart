@@ -1,373 +1,356 @@
-import 'dart:math';
-
+import 'package:bmi_calculator/cubit/bmi_cubit.dart';
+import 'package:bmi_calculator/cubit/bmi_state.dart';
 import 'package:bmi_calculator/generated/assets.dart';
 import 'package:bmi_calculator/modules/bmi_result_screen.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class BmiScreen extends StatefulWidget {
+class BmiScreen extends StatelessWidget {
   const BmiScreen({super.key});
 
   @override
-  State<BmiScreen> createState() => _BmiScreenState();
-}
-
-class _BmiScreenState extends State<BmiScreen> {
-  bool isMale = true;
-  double height = 120.0;
-  int age = 18;
-  int weight = 50;
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xff04043A),
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: const Color(0xff04043A),
-        title: Text(
-          'BMI Calculator',
-          style: GoogleFonts.roboto(
-            color: Colors.white,
-            fontSize: 25.sp,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0).r,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          isMale = true;
-                        });
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10).r,
-                          color: !isMale
-                              ? const Color(0xFF000000)
-                              : const Color(0xff004a86),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              Assets.imagesMale,
-                              width: 90.w,
-                              height: 90.h,
-                              colorFilter: const ColorFilter.mode(
-                                Colors.white,
-                                BlendMode.srcATop,
-                              ),
-                            ),
-                            Text(
-                              'MALE',
-                              style: GoogleFonts.roboto(
-                                color: Colors.white,
-                                fontSize: 30.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 20.w),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          isMale = false;
-                        });
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            10,
-                          ).r,
-                          color: !isMale
-                              ? const Color(0xff004a86)
-                              : const Color(0xFF000000),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              Assets.imagesFemale,
-                              width: 90.w,
-                              height: 90.h,
-                              colorFilter: const ColorFilter.mode(
-                                Colors.white,
-                                BlendMode.srcATop,
-                              ),
-                            ),
-                            Text(
-                              'FEMALE',
-                              style: GoogleFonts.roboto(
-                                color: Colors.white,
-                                fontSize: 30.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+    return BlocConsumer<BmiCubit, BmiState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        BmiCubit bmiCubit = BmiCubit.get(context);
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text(
+              'BMI Calculator',
             ),
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8,
-              ).r,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10).r,
-                  color: const Color(0xFF000000),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Height',
-                      style: GoogleFonts.roboto(
-                        color: Colors.white,
-                        fontSize: 40.sp,
-                        fontWeight: FontWeight.bold,
+          body: Column(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0).r,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            bmiCubit.changeGender(buttonName: 'Male');
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10).r,
+                              color: bmiCubit.isMale == true
+                                  ? Colors.green
+                                  : Colors.grey,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  Assets.imagesMale,
+                                  width: 90.w,
+                                  height: 90.h,
+                                  colorFilter: const ColorFilter.mode(
+                                    Colors.white,
+                                    BlendMode.srcATop,
+                                  ),
+                                ),
+                                Text(
+                                  'MALE',
+                                  style: GoogleFonts.roboto(
+                                    color: Colors.white,
+                                    fontSize: 30.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
+                      SizedBox(width: 20.w),
+                      Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            bmiCubit.changeGender(buttonName: 'Female');
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                10,
+                              ).r,
+                              color: bmiCubit.isFemale == true
+                                  ? Colors.red
+                                  : Colors.grey,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  Assets.imagesFemale,
+                                  width: 90.w,
+                                  height: 90.h,
+                                  colorFilter: const ColorFilter.mode(
+                                    Colors.white,
+                                    BlendMode.srcATop,
+                                  ),
+                                ),
+                                Text(
+                                  'FEMALE',
+                                  style: GoogleFonts.roboto(
+                                    color: Colors.white,
+                                    fontSize: 30.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 2,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                  ).r,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10).r,
+                      color: const Color(0xFF000000),
                     ),
-                    Row(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                      textBaseline: TextBaseline.alphabetic,
                       children: [
                         Text(
-                          '${height.round()}',
+                          'Height',
                           style: GoogleFonts.roboto(
                             color: Colors.white,
                             fontSize: 40.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(width: 10.w),
-                        Text(
-                          'CM',
-                          style: GoogleFonts.roboto(
-                            color: Colors.white,
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: [
+                            Text(
+                              '${bmiCubit.height.round()}',
+                              style: GoogleFonts.roboto(
+                                color: Colors.white,
+                                fontSize: 40.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(width: 10.w),
+                            Text(
+                              'CM',
+                              style: GoogleFonts.roboto(
+                                color: Colors.white,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Slider(
+                          thumbColor: Colors.red,
+                          activeColor: Colors.blue,
+                          inactiveColor: Colors.white,
+                          value: bmiCubit.height,
+                          min: 70,
+                          max: 250,
+                          onChanged: (value) {
+                            bmiCubit.height = value;
+                            bmiCubit.changeHeight();
+                          },
                         ),
                       ],
                     ),
-                    Slider(
-                      thumbColor: Colors.red,
-                      activeColor: Colors.blue,
-                      inactiveColor: Colors.white,
-                      value: height,
-                      min: 70,
-                      max: 250,
-                      onChanged: (value) {
-                        setState(() {
-                          height = value;
-                        });
-                      },
-                    ),
-                  ],
+                  ),
                 ),
               ),
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0).r,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          10,
-                        ).r,
-                        color: const Color(0xFF000000),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'AGE',
-                            style: GoogleFonts.roboto(
-                              color: Colors.white,
-                              fontSize: 30.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
+              Expanded(
+                flex: 2,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0).r,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              10,
+                            ).r,
+                            color: const Color(0xFF000000),
                           ),
-                          Text(
-                            '$age',
-                            style: GoogleFonts.roboto(
-                              color: Colors.white,
-                              fontSize: 40.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              FloatingActionButton(
-                                onPressed: () {
-                                  setState(() {
-                                    age--;
-                                  });
-                                },
-                                mini: true,
-                                backgroundColor: Colors.blue,
-                                child: Icon(
-                                  Icons.remove,
+                              Text(
+                                'AGE',
+                                style: GoogleFonts.roboto(
                                   color: Colors.white,
-                                  size: 24.sp,
+                                  fontSize: 30.sp,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              FloatingActionButton(
-                                onPressed: () {
-                                  setState(() {
-                                    age++;
-                                  });
-                                },
-                                mini: true,
-                                backgroundColor: Colors.blue,
-                                child: Icon(
-                                  Icons.add,
+                              Text(
+                                '${bmiCubit.age}',
+                                style: GoogleFonts.roboto(
                                   color: Colors.white,
-                                  size: 24.sp,
+                                  fontSize: 40.sp,
+                                  fontWeight: FontWeight.bold,
                                 ),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  IconButton(
+                                    onPressed: () {
+                                      bmiCubit.decrement(button: 'age');
+                                    },
+                                    icon: CircleAvatar(
+                                      backgroundColor: Colors.blue,
+                                      child: Icon(
+                                        Icons.remove,
+                                        color: Colors.white,
+                                        size: 24.sp,
+                                      ),
+                                    ),
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      bmiCubit.increment(button: 'age');
+                                    },
+                                    icon: CircleAvatar(
+                                      backgroundColor: Colors.blue,
+                                      child: Icon(
+                                        Icons.add,
+                                        color: Colors.white,
+                                        size: 24.sp,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                  SizedBox(width: 10.w),
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          10,
-                        ).r,
-                        color: const Color(0xFF000000),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'WEIGHT',
-                            style: GoogleFonts.roboto(
-                              color: Colors.white,
-                              fontSize: 30.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
+                      SizedBox(width: 10.w),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              10,
+                            ).r,
+                            color: const Color(0xFF000000),
                           ),
-                          Text(
-                            '$weight',
-                            style: GoogleFonts.roboto(
-                              color: Colors.white,
-                              fontSize: 40.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              FloatingActionButton(
-                                onPressed: () {
-                                  setState(() {
-                                    weight--;
-                                  });
-                                },
-                                mini: true,
-                                backgroundColor: Colors.blue,
-                                child: Icon(
-                                  Icons.remove,
+                              Text(
+                                'WEIGHT',
+                                style: GoogleFonts.roboto(
                                   color: Colors.white,
-                                  size: 24.sp,
+                                  fontSize: 30.sp,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              FloatingActionButton(
-                                onPressed: () {
-                                  setState(() {
-                                    weight++;
-                                  });
-                                },
-                                mini: true,
-                                backgroundColor: Colors.blue,
-                                child: Icon(
-                                  Icons.add,
+                              Text(
+                                '${bmiCubit.weight}',
+                                style: GoogleFonts.roboto(
                                   color: Colors.white,
-                                  size: 24.sp,
+                                  fontSize: 40.sp,
+                                  fontWeight: FontWeight.bold,
                                 ),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  IconButton(
+                                    onPressed: () {
+                                      bmiCubit.decrement(button: 'weight');
+                                    },
+                                    icon: CircleAvatar(
+                                      backgroundColor: Colors.blue,
+                                      child: Icon(
+                                        Icons.remove,
+                                        color: Colors.white,
+                                        size: 24.sp,
+                                      ),
+                                    ),
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      bmiCubit.increment(button: 'weight');
+                                    },
+                                    icon: CircleAvatar(
+                                      backgroundColor: Colors.blue,
+                                      child: Icon(
+                                        Icons.add,
+                                        color: Colors.white,
+                                        size: 24.sp,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                        ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  color: const Color(0xFF000000),
+                  width: double.infinity,
+                  child: MaterialButton(
+                    onPressed: () {
+                      bmiCubit.calculateBMI();
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BMIResultScreen(
+                            isMale: bmiCubit.isMale,
+                            age: bmiCubit.age,
+                            result: bmiCubit.result.round(),
+                          ),
+                        ),
+                      );
+                    },
+                    height: 60.0,
+                    child: Text(
+                      'CALCULATOR',
+                      style: GoogleFonts.roboto(
+                        color: Colors.white,
+                        fontSize: 25.sp,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            color: const Color(0xFF000000),
-            width: double.infinity,
-            child: MaterialButton(
-              onPressed: () {
-                double result = weight / pow(height / 100, 2);
-
-                if (kDebugMode) {
-                  print(result.round());
-                }
-
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => BMIResultScreen(
-                      isMale: isMale,
-                      age: age,
-                      result: result.round(),
-                    ),
-                  ),
-                );
-              },
-              height: 60.0,
-              child: Text(
-                'CALCULATOR',
-                style: GoogleFonts.roboto(
-                  color: Colors.white,
-                  fontSize: 25.sp,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
