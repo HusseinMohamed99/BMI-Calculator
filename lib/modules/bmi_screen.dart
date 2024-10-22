@@ -315,34 +315,32 @@ class BmiScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  color: const Color(0xFF000000),
-                  width: double.infinity,
-                  child: MaterialButton(
-                    onPressed: () {
-                      bmiCubit.calculateBMI();
-
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => BMIResultScreen(
-                            isMale: bmiCubit.isMale,
-                            age: bmiCubit.age,
-                            result: bmiCubit.result.round(),
-                          ),
+              Container(
+                alignment: Alignment.center,
+                height: 50.h,
+                color: const Color(0xFF000000),
+                width: double.infinity,
+                child: MaterialButton(
+                  onPressed: () {
+                    bmiCubit.calculateBMI();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BMIResultScreen(
+                          isMale: bmiCubit.isMale,
+                          age: bmiCubit.age,
+                          result: bmiCubit.result.round(),
                         ),
-                      );
-                    },
-                    height: 60.0,
-                    child: Text(
-                      'CALCULATOR',
-                      style: GoogleFonts.roboto(
-                        color: Colors.white,
-                        fontSize: 25.sp,
-                        fontWeight: FontWeight.bold,
                       ),
+                    );
+                  },
+                  child: Text(
+                    'CALCULATOR',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.roboto(
+                      color: Colors.white,
+                      fontSize: 25.sp,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
