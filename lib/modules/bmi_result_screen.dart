@@ -11,11 +11,11 @@ class BMIResultScreen extends StatelessWidget {
   final int age;
 
   const BMIResultScreen({
-    Key? key,
+    super.key,
     required this.result,
     required this.age,
     required this.isMale,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
