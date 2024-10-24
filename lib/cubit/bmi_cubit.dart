@@ -12,7 +12,7 @@ class BmiCubit extends Cubit<BmiState> {
   double height = 120.0;
   double result = 0;
   bool isMale = true;
-  bool isFemale = true;
+  bool isFemale = false;
 
   void calculateBMI() async {
     result = weight / pow(height / 100, 2);
