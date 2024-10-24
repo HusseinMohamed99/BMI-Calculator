@@ -11,24 +11,18 @@ class CustomHeightWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 8,
-      ).r,
+      padding: EdgeInsets.symmetric(horizontal: 8.w),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10).r,
-          color: const Color(0xFF000000),
+          color: ColorManager.blackColor,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               'Height',
-              style: GoogleFonts.roboto(
-                color: Colors.white,
-                fontSize: 40.sp,
-                fontWeight: FontWeight.bold,
-              ),
+              style: buildTextStyle(fontSize: 30, context: context),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -37,27 +31,19 @@ class CustomHeightWidget extends StatelessWidget {
               children: [
                 Text(
                   '${bmiCubit.height.round()}',
-                  style: GoogleFonts.roboto(
-                    color: Colors.white,
-                    fontSize: 40.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: buildTextStyle(fontSize: 35, context: context),
                 ),
                 SizedBox(width: 10.w),
                 Text(
                   'CM',
-                  style: GoogleFonts.roboto(
-                    color: Colors.white,
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: buildTextStyle(fontSize: 16, context: context),
                 ),
               ],
             ),
             Slider(
-              thumbColor: Colors.red,
-              activeColor: Colors.blue,
-              inactiveColor: Colors.white,
+              thumbColor: ColorManager.redColor,
+              activeColor: ColorManager.blueColor,
+              inactiveColor: ColorManager.whiteColor,
               value: bmiCubit.height,
               min: 70,
               max: 250,
