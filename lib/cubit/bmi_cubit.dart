@@ -31,10 +31,18 @@ class BmiCubit extends Cubit<BmiState> {
 
   void decrement({required String button}) {
     if (button == 'age') {
-      age--;
+      if (age <= 16) {
+        return;
+      } else {
+        age--;
+      }
       emit(BmiAgeDecrement());
     } else {
-      weight--;
+      if (weight <= 40) {
+        return;
+      } else {
+        weight--;
+      }
       emit(BmiWeightDecrement());
     }
   }
