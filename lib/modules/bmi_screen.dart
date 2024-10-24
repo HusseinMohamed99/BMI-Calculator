@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/core/helpers/export_manager/export_manager.dart';
 import 'package:bmi_calculator/cubit/bmi_cubit.dart';
 import 'package:bmi_calculator/cubit/bmi_state.dart';
 import 'package:bmi_calculator/generated/assets.dart';
@@ -19,8 +20,9 @@ class BmiScreen extends StatelessWidget {
         BmiCubit bmiCubit = BmiCubit.get(context);
         return Scaffold(
           appBar: AppBar(
-            title: const Text(
+            title: Text(
               'BMI Calculator',
+              style: buildTextStyle(fontSize: 16, context: context),
             ),
           ),
           body: Column(

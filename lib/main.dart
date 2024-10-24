@@ -3,7 +3,14 @@ part of './core/helpers/export_manager/export_manager.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
-  runApp(const MyApp());
+  if (kReleaseMode) {
+    await requestReview();
+  }
+  if (kDebugMode) {
+    await Upgrader.clearSavedSettings();
+  }
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -22,21 +29,44 @@ class MyApp extends StatelessWidget {
             title: 'BMI Calculator',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-                scaffoldBackgroundColor: const Color(0xff04043A),
-                appBarTheme: AppBarTheme(
-                  backgroundColor: const Color(0xff04043A),
-                  centerTitle: true,
-                  titleTextStyle: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25.sp,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 6,
-                  ),
-                )),
+              scaffoldBackgroundColor: ColorManager.backgroundColor,
+              appBarTheme: AppBarTheme(
+                backgroundColor: ColorManager.backgroundColor,
+                centerTitle: true,
+                titleTextStyle: buildTextStyle(
+                  context: context,
+                  fontSize: 25,
+                  letterSpacing: 6,
+                ),
+              ),
+            ),
             home: const BmiScreen(),
           );
         },
       ),
     );
+  }
+}
+
+Future<void> requestReview() async {
+  final InAppReview inAppReview = InAppReview.instance;
+
+  if (await inAppReview.isAvailable()) {
+    await inAppReview.requestReview();
+  } else {
+    goToApplicationOnPlayStore();
+  }
+}
+
+goToApplicationOnPlayStore() async {
+  PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+  String url = '';
+  String packageName = packageInfo.packageName;
+  if (Platform.isAndroid) {
+    url = 'https://play.google.com/store/apps/details?id=$packageName';
+  } else if (!await launchUrl(Uri.parse(url),
+      mode: LaunchMode.externalApplication)) {
+    throw Exception('Could not launch $url');
   }
 }
