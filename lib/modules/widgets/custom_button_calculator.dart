@@ -11,9 +11,12 @@ class CustomButtonCalculatorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        color: ColorManager.blackColor,
+        borderRadius: BorderRadius.all(Radius.circular(16)),
+      ),
       alignment: Alignment.center,
       height: 50.h,
-      color: const Color(0xFF000000),
       width: double.infinity,
       child: MaterialButton(
         onPressed: () {
@@ -32,11 +35,7 @@ class CustomButtonCalculatorWidget extends StatelessWidget {
         child: Text(
           'CALCULATOR',
           textAlign: TextAlign.center,
-          style: GoogleFonts.roboto(
-            color: Colors.white,
-            fontSize: 25.sp,
-            fontWeight: FontWeight.bold,
-          ),
+          style: buildTextStyle(fontSize: 20, context: context),
         ),
       ),
     );
