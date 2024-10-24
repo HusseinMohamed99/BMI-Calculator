@@ -1,9 +1,4 @@
-import 'package:bmi_calculator/cubit/bmi_cubit.dart';
-import 'package:bmi_calculator/cubit/bmi_state.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
+part of './../core/helpers/export_manager/export_manager.dart';
 
 class BMIResultScreen extends StatelessWidget {
   final int result;
@@ -25,13 +20,14 @@ class BMIResultScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            title: const Text(
+            title: Text(
               'BMI Result',
+              style: buildTextStyle(fontSize: 20, context: context),
             ),
           ),
           body: Center(
             child: Padding(
-              padding: const EdgeInsets.all(40.0).r,
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
               child: Container(
                 width: double.infinity,
                 height: 300.h,
