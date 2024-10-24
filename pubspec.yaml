@@ -18,8 +18,9 @@ dependencies:
   google_fonts: ^6.2.1
   in_app_review: ^2.0.9
   package_info_plus: ^8.1.0
-  url_launcher: ^6.3.0
+  rename: ^3.0.2
   upgrader: ^11.3.0
+  url_launcher: ^6.3.0
 dev_dependencies:
   flutter_lints: ^5.0.0
   flutter_test:
