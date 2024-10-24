@@ -6,3 +6,5 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../modules/bmi_screen.dart';
 
 part './../../../main.dart';
+
+part './../responsive/font_size.dart';
