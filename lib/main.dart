@@ -1,8 +1,4 @@
-import 'package:bmi_calculator/cubit/bmi_cubit.dart';
-import 'package:bmi_calculator/modules/bmi_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+part of './core/helpers/export_manager/export_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
