@@ -14,3 +14,5 @@ part './../../../modules/widgets/custom_height.dart';
 part './../responsive/font_size.dart';
 part './../style/color_manager.dart';
 part './../style/text_style.dart';
+
+part './../../../modules/widgets/select_gender_widget.dart';
