@@ -11,8 +11,9 @@ class CustomButtonCalculatorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
       decoration: BoxDecoration(
-        color: ColorManager.blackColor,
+        color: ColorManager.greenColor,
         borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
       alignment: Alignment.center,

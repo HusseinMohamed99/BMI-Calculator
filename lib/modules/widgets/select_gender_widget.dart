@@ -23,7 +23,8 @@ class SelectGenderWidget extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10).r,
-          color: isMale == true ? Colors.green : Colors.grey,
+          color:
+              isMale == true ? ColorManager.greenColor : ColorManager.greyColor,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

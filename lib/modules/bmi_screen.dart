@@ -20,22 +20,24 @@ class BmiScreen extends StatelessWidget {
               style: buildTextStyle(fontSize: 16, context: context),
             ),
           ),
-          body: Column(
-            children: [
-              Expanded(
-                flex: 2,
-                child: CustomGenderWidget(bmiCubit: bmiCubit),
-              ),
-              Expanded(
-                flex: 2,
-                child: CustomHeightWidget(bmiCubit: bmiCubit),
-              ),
-              Expanded(
-                flex: 2,
-                child: CustomAgeAndWeightWidget(bmiCubit: bmiCubit),
-              ),
-              CustomButtonCalculatorWidget(bmiCubit: bmiCubit),
-            ],
+          body: UpgradeWrapper(
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: CustomGenderWidget(bmiCubit: bmiCubit),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: CustomHeightWidget(bmiCubit: bmiCubit),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: CustomAgeAndWeightWidget(bmiCubit: bmiCubit),
+                ),
+                CustomButtonCalculatorWidget(bmiCubit: bmiCubit),
+              ],
+            ),
           ),
         );
       },
