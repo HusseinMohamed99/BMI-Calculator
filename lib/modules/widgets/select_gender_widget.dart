@@ -20,26 +20,32 @@ class SelectGenderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: voidCallback,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10).r,
-          color:
-              isMale == true ? ColorManager.greenColor : ColorManager.greyColor,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              image,
-              width: 90.w,
-              height: 90.h,
-            ),
-            Text(
-              title,
-              style: buildTextStyle(fontSize: 20, context: context),
-            ),
-          ],
+      child: Card(
+        elevation: 5,
+        color:
+            isMale == true ? ColorManager.greenColor : ColorManager.greyColor,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10).r,
+            color: isMale == true
+                ? ColorManager.greenColor
+                : ColorManager.greyColor,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(
+                image,
+                width: 90.w,
+                height: 90.h,
+              ),
+              Text(
+                title,
+                style: buildTextStyle(fontSize: 20, context: context),
+              ),
+            ],
+          ),
         ),
       ),
     );

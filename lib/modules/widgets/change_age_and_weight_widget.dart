@@ -19,51 +19,58 @@ class ChangeAgeAndWeightWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
+      child: Card(
+        elevation: 5,
+        color: ColorManager.blackColor,
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10).r,
-          color: ColorManager.blackColor,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              title,
-              style: buildTextStyle(fontSize: 25, context: context),
-            ),
-            Text(
-              value,
-              style: buildTextStyle(fontSize: 35, context: context),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                IconButton(
-                  onPressed: deCrement,
-                  icon: CircleAvatar(
-                    backgroundColor: ColorManager.blueColor,
-                    child: Icon(
-                      Icons.remove,
-                      color: ColorManager.whiteColor,
-                      size: 24.sp,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10).r,
+            color: ColorManager.blackColor,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                title,
+                style: buildTextStyle(fontSize: 25, context: context),
+              ),
+              Text(
+                value,
+                style: buildTextStyle(fontSize: 35, context: context),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  IconButton(
+                    onPressed: deCrement,
+                    icon: CircleAvatar(
+                      backgroundColor: ColorManager.blueColor,
+                      child: Icon(
+                        Icons.remove,
+                        color: ColorManager.whiteColor,
+                        size: 24.sp,
+                      ),
                     ),
                   ),
-                ),
-                IconButton(
-                  onPressed: inCrement,
-                  icon: CircleAvatar(
-                    backgroundColor: ColorManager.blueColor,
-                    child: Icon(
-                      Icons.add,
-                      color: ColorManager.whiteColor,
-                      size: 24.sp,
+                  IconButton(
+                    onPressed: inCrement,
+                    icon: CircleAvatar(
+                      backgroundColor: ColorManager.blueColor,
+                      child: Icon(
+                        Icons.add,
+                        color: ColorManager.whiteColor,
+                        size: 24.sp,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

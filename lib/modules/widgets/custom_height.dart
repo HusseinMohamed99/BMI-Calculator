@@ -10,8 +10,13 @@ class CustomHeightWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8.w),
+    return Card(
+      elevation: 5,
+      color: ColorManager.blackColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10).r,
+      ),
+      margin: EdgeInsets.symmetric(horizontal: 8.w),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10).r,
