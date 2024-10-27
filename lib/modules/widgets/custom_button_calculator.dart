@@ -28,7 +28,8 @@ class CustomButtonCalculatorWidget extends StatelessWidget {
               builder: (context) => BMIResultScreen(
                 isMale: bmiCubit.isMale,
                 age: bmiCubit.age,
-                result: bmiCubit.result.round(),
+                bmiValue: bmiCubit.result,
+                bmiCategory: bmiCubit.getBmiCategory(bmiCubit.result),
               ),
             ),
           );

@@ -2,6 +2,6 @@
 class Assets {
   Assets._();
 
-  static const String imagesFemale = 'assets/images/female.svg';
-  static const String imagesMale = 'assets/images/male.svg';
+  static const String imagesFemale = 'assets/images/female.png';
+  static const String imagesMale = 'assets/images/male.png';
 }

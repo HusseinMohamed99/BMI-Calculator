@@ -13,7 +13,6 @@ class BmiCubit extends Cubit<BmiState> {
   double result = 0;
   bool isMale = true;
   bool isFemale = false;
-
   void calculateBMI() async {
     result = weight / pow(height / 100, 2);
     emit(BmiCalculate(bmi: result));
@@ -56,6 +55,19 @@ class BmiCubit extends Cubit<BmiState> {
       isMale = false;
       isFemale = true;
       emit(BmiChangeGender());
+    }
+  }
+
+  // Method to determine BMI category
+  String getBmiCategory(double bmi) {
+    if (bmi < 18.5) {
+      return "Underweight";
+    } else if (bmi >= 18.5 && bmi < 24.9) {
+      return "Normal";
+    } else if (bmi >= 25 && bmi < 29.9) {
+      return "Overweight";
+    } else {
+      return "Obese";
     }
   }
 

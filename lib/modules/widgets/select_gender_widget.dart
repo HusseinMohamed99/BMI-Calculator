@@ -30,14 +30,10 @@ class SelectGenderWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SvgPicture.asset(
+            Image.asset(
               image,
               width: 90.w,
               height: 90.h,
-              colorFilter: const ColorFilter.mode(
-                Colors.white,
-                BlendMode.srcATop,
-              ),
             ),
             Text(
               title,
