@@ -18,3 +18,5 @@ final class BmiCalculate extends BmiState {
 final class BmiChangeGender extends BmiState {}
 
 final class BmiChangeHeight extends BmiState {}
+
+final class BmiResultSuccess extends BmiState {}

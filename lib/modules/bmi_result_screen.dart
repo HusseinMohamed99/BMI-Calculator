@@ -1,6 +1,6 @@
 part of './../core/helpers/export_manager/export_manager.dart';
 
-class BMIResultScreen extends StatelessWidget {
+class BMIResultScreen extends StatefulWidget {
   final double bmiValue;
   final bool isMale;
   final int age;
@@ -18,87 +18,85 @@ class BMIResultScreen extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return BlocConsumer<BmiCubit, BmiState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            title: Text(
-              'BMI Result',
-              style: buildTextStyle(fontSize: 20, context: context),
-            ),
-          ),
-          body: Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  // Radial Gauge for BMI Value
-                  SfRadialGauge(
-                    axes: <RadialAxis>[
-                      RadialAxis(
-                        minimum: 10,
-                        maximum: 40,
-                        axisLabelStyle: GaugeTextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                        axisLineStyle: AxisLineStyle(
-                          thickness: 0.2,
-                          cornerStyle: CornerStyle.bothCurve,
-                          color: const Color(0x1E00A9B5),
-                          thicknessUnit: GaugeSizeUnit.factor,
-                        ),
-                        ranges: [
-                          ...gaugeRange(context),
-                        ],
-                        pointers: gaugePointer,
-                        annotations: <GaugeAnnotation>[
-                          GaugeAnnotation(
-                            widget: Text(
-                              bmiValue.toStringAsFixed(1),
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                            angle: 90,
-                            positionFactor: 0.7,
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
+  State<BMIResultScreen> createState() => _BMIResultScreenState();
+}
 
-                  CustomResultText(
-                    title: bmiCategory,
-                    color: bmiCategoryColor,
-                    fontSize: 25,
-                  ),
-                  CustomResultText(
-                    title: bmiInterpretation,
-                    color: ColorManager.whiteColor,
-                    fontSize: 14,
+class _BMIResultScreenState extends State<BMIResultScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text(
+          'BMI Result',
+          style: buildTextStyle(fontSize: 20, context: context),
+        ),
+      ),
+      body: Center(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // Radial Gauge for BMI Value
+              SfRadialGauge(
+                axes: <RadialAxis>[
+                  RadialAxis(
+                    minimum: 10,
+                    maximum: 40,
+                    axisLabelStyle: GaugeTextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                    axisLineStyle: AxisLineStyle(
+                      thickness: 0.2,
+                      cornerStyle: CornerStyle.bothCurve,
+                      color: const Color(0x1E00A9B5),
+                      thicknessUnit: GaugeSizeUnit.factor,
+                    ),
+                    ranges: gaugeRange,
+                    pointers: gaugePointer,
+                    annotations: <GaugeAnnotation>[
+                      GaugeAnnotation(
+                        widget: Text(
+                          widget.bmiValue.toStringAsFixed(1),
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        angle: 90,
+                        positionFactor: 0.7,
+                      )
+                    ],
                   ),
                 ],
               ),
-            ),
+
+              CustomResultText(
+                title: widget.bmiCategory,
+                color: widget.bmiCategoryColor,
+                fontSize: 25,
+              ),
+              CustomResultText(
+                title: widget.bmiInterpretation,
+                color: ColorManager.whiteColor,
+                fontSize: 14,
+              ),
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 
   List<GaugePointer> get gaugePointer {
     return <GaugePointer>[
       NeedlePointer(
-        value: bmiValue,
+        value: widget.bmiValue,
         needleColor: Colors.blueAccent,
         needleLength: 0.8,
         needleStartWidth: 1,
@@ -107,7 +105,7 @@ class BMIResultScreen extends StatelessWidget {
     ];
   }
 
-  List<GaugeRange> gaugeRange(BuildContext context) {
+  List<GaugeRange> get gaugeRange {
     return <GaugeRange>[
       GaugeRange(
         startValue: 10,
