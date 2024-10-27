@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:bmi_calculator/cubit/bmi_state.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BmiCubit extends Cubit<BmiState> {
@@ -59,15 +60,32 @@ class BmiCubit extends Cubit<BmiState> {
   }
 
   // Method to determine BMI category
-  String getBmiCategory(double bmi) {
+  // Method to determine BMI category and color
+  Map<String, dynamic> getBmiCategory(double bmi) {
     if (bmi < 18.5) {
-      return "Underweight";
+      return {
+        'category': "Underweight",
+        'color': Colors.blue,
+        'bmiInterpretation': "Try to increase the weight",
+      };
     } else if (bmi >= 18.5 && bmi < 24.9) {
-      return "Normal";
+      return {
+        'category': "Normal",
+        'color': Colors.green,
+        'bmiInterpretation': "Enjoy, You are fit",
+      };
     } else if (bmi >= 25 && bmi < 29.9) {
-      return "Overweight";
+      return {
+        'category': "Overweight",
+        'color': Colors.orange,
+        'bmiInterpretation': "Do regular exercise & reduce the weight",
+      };
     } else {
-      return "Obese";
+      return {
+        'category': "Obese",
+        'color': Colors.red,
+        'bmiInterpretation': "Please work to reduce obesity",
+      };
     }
   }
 

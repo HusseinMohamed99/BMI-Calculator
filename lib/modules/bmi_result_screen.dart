@@ -6,13 +6,16 @@ class BMIResultScreen extends StatelessWidget {
   final bool isMale;
   final int age;
   final String bmiCategory;
-
+  final String bmiInterpretation;
+  final Color bmiCategoryColor;
   const BMIResultScreen({
     super.key,
     required this.bmiValue,
     required this.isMale,
     required this.age,
     required this.bmiCategory,
+    required this.bmiCategoryColor,
+    required this.bmiInterpretation,
   });
 
   @override
@@ -29,82 +32,62 @@ class BMIResultScreen extends StatelessWidget {
             ),
           ),
           body: Center(
-            child: Card(
-              color: Colors.black87,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              // margin: const EdgeInsets.all(20),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    // Radial Gauge for BMI Value
-                    SfRadialGauge(
-                      axes: <RadialAxis>[
-                        RadialAxis(
-                          minimum: 10,
-                          maximum: 40,
-                          axisLabelStyle: GaugeTextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                          axisLineStyle: AxisLineStyle(
-                            thickness: 0.2,
-                            cornerStyle: CornerStyle.bothCurve,
-                            color: const Color(0x1E00A9B5),
-                            thicknessUnit: GaugeSizeUnit.factor,
-                          ),
-                          ranges: [
-                            ...gaugeRange(context),
-                          ],
-                          pointers: gaugePointer,
-                          annotations: <GaugeAnnotation>[
-                            GaugeAnnotation(
-                              widget: Text(
-                                bmiValue.toStringAsFixed(1),
-                                style: const TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              angle: 90,
-                              positionFactor: 0.7,
-                            )
-                          ],
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  // Radial Gauge for BMI Value
+                  SfRadialGauge(
+                    axes: <RadialAxis>[
+                      RadialAxis(
+                        minimum: 10,
+                        maximum: 40,
+                        axisLabelStyle: GaugeTextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
                         ),
-                      ],
-                    ),
-                    CustomResult(result: bmiValue),
-                    CustomDivider(),
-                    SizedBox(
-                      height: 5.h,
-                    ),
-                    CustomResultText(
-                      title: 'Gender : ${isMale ? 'Male' : 'Female'}',
-                      fontSize: 25,
-                    ),
-                    SizedBox(
-                      height: 5.h,
-                    ),
-                    CustomDivider(),
-                    CustomResultText(title: 'Age : $age', fontSize: 25),
-                    SizedBox(height: 5.h),
-                    CustomDivider(),
-                    if (bmiValue >= 16 && bmiValue <= 18.5)
-                      CustomResultText(title: 'Under Weight', fontSize: 25)
-                    else if (bmiValue >= 18.5 && bmiValue <= 25.0)
-                      CustomResultText(title: 'Normal', fontSize: 25)
-                    else
-                      CustomResultText(
-                        title: bmiCategory,
-                        color: ColorManager.redColor,
-                        fontSize: 25,
+                        axisLineStyle: AxisLineStyle(
+                          thickness: 0.2,
+                          cornerStyle: CornerStyle.bothCurve,
+                          color: const Color(0x1E00A9B5),
+                          thicknessUnit: GaugeSizeUnit.factor,
+                        ),
+                        ranges: [
+                          ...gaugeRange(context),
+                        ],
+                        pointers: gaugePointer,
+                        annotations: <GaugeAnnotation>[
+                          GaugeAnnotation(
+                            widget: Text(
+                              bmiValue.toStringAsFixed(1),
+                              style: const TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            angle: 90,
+                            positionFactor: 0.7,
+                          )
+                        ],
                       ),
-                  ],
-                ),
+                    ],
+                  ),
+
+                  CustomResultText(
+                    title: bmiCategory,
+                    color: bmiCategoryColor,
+                    fontSize: 25,
+                  ),
+                  CustomResultText(
+                    title: bmiInterpretation,
+                    color: ColorManager.whiteColor,
+                    fontSize: 14,
+                  ),
+                ],
               ),
             ),
           ),
@@ -157,71 +140,6 @@ class BMIResultScreen extends StatelessWidget {
       ),
     ];
   }
-
-  // void setBmiInterpretation() {
-  //   if (result > 30) {
-  //     bmiStatus = "Obese";
-  //     bmiInterpretation = "Please work to reduce obesity";
-  //     bmiStatusColor = Colors.pink;
-  //   } else if (result >= 25) {
-  //     bmiStatus = "Overweight";
-  //     bmiInterpretation = "Do regular exercise & reduce the weight";
-  //     bmiStatusColor = Colors.orange;
-  //   } else if (result >= 18.5) {
-  //     bmiStatus = "Normal";
-  //     bmiInterpretation = "Enjoy, You are fit";
-  //     bmiStatusColor = Colors.green;
-  //   } else if (result < 18.5) {
-  //     bmiStatus = "Underweight";
-  //     bmiInterpretation = "Try to increase the weight";
-  //     bmiStatusColor = Colors.red;
-  //   }
-  // }
-}
-
-class CustomResult extends StatelessWidget {
-  const CustomResult({
-    super.key,
-    required this.result,
-  });
-
-  final double result;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.baseline,
-      textBaseline: TextBaseline.alphabetic,
-      children: [
-        CustomResultText(
-            title: 'Result : ${result.toStringAsFixed(1)}', fontSize: 25),
-        SizedBox(width: 1.w),
-        CustomResultText(title: 'BMI', fontSize: 16),
-      ],
-    );
-  }
-}
-
-class CustomDivider extends StatelessWidget {
-  const CustomDivider({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10).r,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(2).r,
-          color: Colors.blue,
-        ),
-        height: 2.h,
-        width: double.infinity,
-      ),
-    );
-  }
 }
 
 class CustomResultText extends StatelessWidget {
@@ -246,6 +164,3 @@ class CustomResultText extends StatelessWidget {
     );
   }
 }
-// Color color1 = HexColor("b74093");
-// Color color2 = HexColor("#b74093");
-// Color color3 = HexColor("#88b74093");

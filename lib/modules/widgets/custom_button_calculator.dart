@@ -10,6 +10,7 @@ class CustomButtonCalculatorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var bmiCategory = bmiCubit.getBmiCategory(bmiCubit.result);
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
       decoration: BoxDecoration(
@@ -29,7 +30,9 @@ class CustomButtonCalculatorWidget extends StatelessWidget {
                 isMale: bmiCubit.isMale,
                 age: bmiCubit.age,
                 bmiValue: bmiCubit.result,
-                bmiCategory: bmiCubit.getBmiCategory(bmiCubit.result),
+                bmiCategory: bmiCategory['category'] as String,
+                bmiCategoryColor: bmiCategory['color'] as Color,
+                bmiInterpretation: bmiCategory['bmiInterpretation'] as String,
               ),
             ),
           );
