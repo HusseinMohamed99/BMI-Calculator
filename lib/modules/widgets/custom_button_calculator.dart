@@ -11,16 +11,15 @@ class CustomButtonCalculatorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var bmiCategory = bmiCubit.getBmiCategory(bmiCubit.result);
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-      decoration: BoxDecoration(
-        color: ColorManager.greenColor,
-        borderRadius: BorderRadius.all(Radius.circular(16)),
-      ),
-      alignment: Alignment.center,
-      height: 50.h,
-      width: double.infinity,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
       child: MaterialButton(
+        minWidth: double.infinity,
+        height: 50.h,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10).r,
+        ),
+        color: ColorManager.greenColor,
         onPressed: () {
           bmiCubit.calculateBMI();
           Navigator.push(
