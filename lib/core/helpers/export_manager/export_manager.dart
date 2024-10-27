@@ -21,3 +21,5 @@ part './../../../modules/widgets/upgrade_wrapper.dart';
 part './../responsive/font_size.dart';
 part './../style/color_manager.dart';
 part './../style/text_style.dart';
+
+part './../../../modules/widgets/custom_result_text.dart';
