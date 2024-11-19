@@ -34,16 +34,16 @@ if (flutterVersionName == null) {
 
 android {
      namespace = "com.example.bmi_calculator"
-      compileSdk = flutter.compileSdkVersion
-    ndkVersion =  "27.0.12077973"
+     compileSdk = flutter.compileSdkVersion
+     ndkVersion =  "27.0.12077973"
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
 
     kotlinOptions {
-         jvmTarget = JavaVersion.VERSION_17
+         jvmTarget = JavaVersion.VERSION_18
     }
 signingConfigs {
           release {
