@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "210388713710",
+    "project_id": "bmicalculator-384bb",
+    "storage_bucket": "bmicalculator-384bb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210388713710:android:f91c04b2d1b3c4f6adb3ff",
+        "android_client_info": {
+          "package_name": "com.Dev.bmiCalculator"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTx2iGQ0Gp0inI4eH-iseK1UVbA7JLxUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

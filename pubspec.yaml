@@ -3,13 +3,17 @@ description: A new Flutter project.
 
 publish_to: "none"
 
-version: 1.0.5+5
+version: 1.0.6+6
 
 environment:
   sdk: ^3.5.3
 
 dependencies:
   cupertino_icons: ^1.0.4
+  firebase_analytics: ^11.3.5
+  firebase_core: ^3.8.0
+  firebase_crashlytics: ^4.1.5
+  firebase_remote_config: ^5.1.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
@@ -20,7 +24,6 @@ dependencies:
   package_info_plus: ^8.1.0
   rename: ^3.0.2
   syncfusion_flutter_gauges: ^27.1.56
-  upgrader: ^11.3.0
   url_launcher: ^6.3.0
 dev_dependencies:
   flutter_lints: ^5.0.0
