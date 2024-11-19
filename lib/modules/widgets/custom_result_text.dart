@@ -1,7 +1,7 @@
 part of './../../core/helpers/export_manager/export_manager.dart';
 
-class CustomResultText extends StatelessWidget {
-  const CustomResultText({
+class CustomText extends StatelessWidget {
+  const CustomText({
     super.key,
     required this.title,
     required this.fontSize,

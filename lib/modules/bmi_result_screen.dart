@@ -39,6 +39,7 @@ class _BMIResultScreenState extends State<BMIResultScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Spacer(),
               // Radial Gauge for BMI Value
               SfRadialGauge(
                 axes: <RadialAxis>[
@@ -76,16 +77,23 @@ class _BMIResultScreenState extends State<BMIResultScreen> {
                 ],
               ),
 
-              CustomResultText(
+              CustomText(
                 title: widget.bmiCategory,
                 color: widget.bmiCategoryColor,
                 fontSize: 25,
               ),
-              CustomResultText(
+              CustomText(
                 title: widget.bmiInterpretation,
                 color: ColorManager.whiteColor,
                 fontSize: 14,
               ),
+              Spacer(),
+              CustomText(
+                title: 'Version: $appVersion',
+                color: ColorManager.whiteColor,
+                fontSize: 14,
+              ),
+              SizedBox(height: 20.h),
             ],
           ),
         ),
@@ -115,7 +123,7 @@ class _BMIResultScreenState extends State<BMIResultScreen> {
         endWidth: 20,
       ),
       GaugeRange(
-        startValue: 18.5,
+        startValue: 18.6,
         endValue: 24.9,
         color: ColorManager.greenColor,
         startWidth: 20,

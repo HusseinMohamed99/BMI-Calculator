@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:bmi_calculator/core/helpers/constant/constant.dart';
 import 'package:bmi_calculator/core/helpers/export_manager/export_manager.dart';
 import 'package:bmi_calculator/cubit/bmi_cubit.dart';
 import 'package:bmi_calculator/modules/bmi_screen.dart';
@@ -26,7 +27,11 @@ void main() async {
   if (kDebugMode) {
     await Upgrader.clearSavedSettings();
   }
-
+  PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  appName = packageInfo.appName;
+  appPackageName = packageInfo.packageName;
+  appVersion = packageInfo.version;
+  appBuildNumber = packageInfo.buildNumber;
   runApp(MyApp());
 }
 
