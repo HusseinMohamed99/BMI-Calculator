@@ -1,12 +1,4 @@
-import 'package:bmi_calculator/core/helpers/export_manager/export_manager.dart';
-import 'package:bmi_calculator/cubit/bmi_cubit.dart';
-import 'package:bmi_calculator/cubit/bmi_state.dart';
-import 'package:firebase_remote_config/firebase_remote_config.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
+part of './../core/helpers/export_manager/export_manager.dart';
 
 class BmiScreen extends StatefulWidget {
   const BmiScreen({super.key});

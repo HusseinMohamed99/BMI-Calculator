@@ -2,9 +2,7 @@ import 'dart:developer';
 
 import 'package:bmi_calculator/core/helpers/constant/constant.dart';
 import 'package:bmi_calculator/core/helpers/export_manager/export_manager.dart';
-import 'package:bmi_calculator/cubit/bmi_cubit.dart';
 import 'package:bmi_calculator/firebase_options.dart';
-import 'package:bmi_calculator/modules/bmi_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';

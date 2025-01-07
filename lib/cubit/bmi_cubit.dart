@@ -1,8 +1,4 @@
-import 'dart:math';
-
-import 'package:bmi_calculator/cubit/bmi_state.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+part of './../core/helpers/export_manager/export_manager.dart';
 
 class BmiCubit extends Cubit<BmiState> {
   BmiCubit() : super(BmiInitial());
