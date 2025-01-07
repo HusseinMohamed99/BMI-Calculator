@@ -13,18 +13,12 @@ The **BMI Calculator** is a simple and intuitive mobile application designed to 
 - **BMI Categories**: Clear classification of BMI results (Underweight, Normal, Overweight, Obese).
 - **Responsive Design**: Supports various screen sizes and orientations.
 
-## Demo
-
-| BMI Calculator Video Demo |
-| :-: |
-| <video src="https://github.com/HusseinMohamed99/BMI-Calculator/assets/84459939/917765d4-1d6c-4631-a078-ef8a828b30a3" width="250"/> |
-
 ## Getting Started
 
 To run the **BMI Calculator** on your local machine, ensure you have [Flutter](https://flutter.dev/docs/get-started/install) installed. Follow these steps:
 
 1. **Clone the Repository**: Clone the project from GitHub to your local environment.
-   
+
 2. **Install Dependencies**: Once the repository is cloned, navigate to the project folder and install the necessary dependencies.
 
 3. **Run the Application**: Use the Flutter tools to run the application on your preferred device or emulator.
@@ -42,23 +36,9 @@ To run the **BMI Calculator** on your local machine, ensure you have [Flutter](h
 - **Dart**: Programming language used with Flutter for developing mobile apps.
 - **Third-party Packages**: Integration of additional Flutter packages to enhance app functionality.
 
-## Screenshots
-
-| Home Screen | BMI Result |
-| :-: | :-: |
-| ![Home Screen](path_to_home_screen_image) | ![BMI Result](path_to_bmi_result_image) |
-
-## Privacy Policy
-
-The **BMI Calculator** app does not collect or store any personal information. For more details, please refer to the [Privacy Policy](link_to_privacy_policy).
-
-## License
-
-This project is licensed under the MIT License. You can view the full license in the [LICENSE](LICENSE) file.
-
 ## Contact
 
-For any questions, issues, or suggestions, feel free to reach out to me at **[Your Email]**.
+For any questions, issues, or suggestions, feel free to reach out to me at [husseinhtm99@gmail.com]
 
 ---
 
