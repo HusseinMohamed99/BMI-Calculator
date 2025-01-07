@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:in_app_review/in_app_review.dart';
@@ -44,22 +45,36 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return MaterialApp(
-            title: 'BMI Calculator',
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              scaffoldBackgroundColor: ColorManager.backgroundColor,
-              appBarTheme: AppBarTheme(
-                backgroundColor: ColorManager.backgroundColor,
-                centerTitle: true,
-                titleTextStyle: buildTextStyle(
-                  context: context,
-                  fontSize: 25,
-                  letterSpacing: 6,
+          SystemChrome.setPreferredOrientations(
+            [
+              DeviceOrientation.portraitUp,
+              DeviceOrientation.portraitDown,
+            ],
+          );
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(
+              textScaler: const TextScaler.linear(1.0),
+            ),
+            child: MaterialApp(
+              title: 'BMI Calculator',
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(
+                scaffoldBackgroundColor: ColorManager.backgroundColor,
+                appBarTheme: AppBarTheme(
+                  backgroundColor: ColorManager.backgroundColor,
+                  centerTitle: true,
+                  titleTextStyle: buildTextStyle(
+                    context: context,
+                    fontSize: 25,
+                    letterSpacing: 6,
+                  ),
+                  systemOverlayStyle: SystemUiOverlayStyle(
+                    systemNavigationBarColor: ColorManager.backgroundColor,
+                  ),
                 ),
               ),
+              home: const BmiScreen(),
             ),
-            home: const BmiScreen(),
           );
         },
       ),
