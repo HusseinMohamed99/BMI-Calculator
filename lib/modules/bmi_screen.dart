@@ -160,8 +160,8 @@ class _BmiScreenState extends State<BmiScreen> {
                   ),
                 ),
                 onPressed: () {
-                  _launchURL(
-                      'https://play.google.com/store/apps/details?id=com.example.your_app_id');
+                  launchURL(
+                      'https://play.google.com/store/apps/details?id=$appPackageName');
                 },
               ),
             ],
@@ -171,9 +171,11 @@ class _BmiScreenState extends State<BmiScreen> {
     });
   }
 
-  Future<void> _launchURL(String url) async {
-    !await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
-    {
+  Future<void> launchURL(String url) async {
+    final uri = Uri.parse(url);
+
+    // Check if the URL can be launched and handle the result
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
       throw Exception('لا يمكن فتح الرابط $url');
     }
   }
